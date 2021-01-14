@@ -8,12 +8,13 @@ const content = document.getElementById('content');
 btn.addEventListener('click' , function() {
     speech.start();
 });
-
+console.log('アイウエオ')
 speech.onresult = function(e) {
      speech.stop();
      if(e.results[0].isFinal){
          var autotext =  e.results[0][0].transcript
          content.innerHTML += '<div>'+ autotext +'</div>';
+         console.log(autotext);
 
       }
  }
@@ -21,4 +22,18 @@ speech.onresult = function(e) {
  speech.onend = () => {
     speech.start()
  };
--^
+
+
+
+ $(function(){
+     $.ajax({
+         url: 'recieve.py',
+         type: 'post',
+         data: '送信メッセージ'
+     }).done(function(data){
+         console.log(data);
+         });
+     }).fail(function(){
+         console.log('failed');
+     });
+ });
