@@ -4,9 +4,7 @@ import MeCab
 import sys
 
 
-wakati=MeCab.Tagger('-Owakati')
-sentence_wakati = wakati.parse(autotext).split()
-print(sentence_wakati)
+
 
 app = Flask(__name__)
 
@@ -15,10 +13,20 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     name = "Hoge"
-    #return name
+    return name
+    #recieve = sys.stdin.readline()
+    #recieve = recieve + "OK!"
+
+    #print('Content-type: text/html\n')
+    #print(recieve)
+
+    #wakati=MeCab.Tagger('-Owakati')
+    #sentence_wakati = wakati.parse(recieve).split()
+    #print(sentence_wakati)
     return render_template('hello.html', title='flask test', name=name) #変更
 
-#あいうえおa
+
+
 
 
 ## おまじない

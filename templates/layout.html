@@ -1,6 +1,8 @@
   <!doctype html>
   <html>
   <head>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <title>{{ title }}</title>
   </head>
   <body>
@@ -8,5 +10,21 @@
     <!-- ここにメインコンテンツを書く -->
     {% endblock %}
     <script src="static/hello.js"></script>
+    <script>
+    $(function(){
+      console.log("ajax")
+        $.ajax({
+
+            url: 'http://127.0.0.1:5000/',
+            type: 'post',
+            data: autotext
+        }).done(function(data){
+            console.log(data);
+            });
+        }).fail(function(){
+            console.log('failed');
+        });
+    });
+    </script>
   </body>
   </html>
