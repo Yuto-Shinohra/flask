@@ -6,25 +6,25 @@
     <title>{{ title }}</title>
   </head>
   <body>
+    <a class="label label-primary"  onclick="myFunction({{autotext}})" > Compare</a>
     {% block content %}
     <!-- ここにメインコンテンツを書く -->
     {% endblock %}
     <script src="static/hello.js"></script>
     <script>
-    $(function(){
-      console.log("ajax")
-        $.ajax({
 
-            url: 'http://127.0.0.1:5000/',
-            type: 'post',
-            data: autotext
-        }).done(function(data){
-            console.log(data);
-            });
-        }).fail(function(){
-            console.log('failed');
+    function myFunction(x) {
+        $.getJSON($SCRIPT_ROOT + '/check_selected', {
+        post: x
+        }, function(data) {
+            var response = data.result;
+            console.log(response);
+
         });
-    });
+      }
     </script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
   </body>
   </html>
