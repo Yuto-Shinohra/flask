@@ -33,7 +33,11 @@ def index():
         get_data = request.form["voice_input"]
         print("音声認識結果:" + get_data)
         if get_data:
-            return jsonify({'output':get_data})
+            wakati=MeCab.Tagger('-Owakati')
+            mecabword = wakati.parse(get_data).split()
+            print(mecabword)
+            #return render_template('hello.html', title='flask test', name=name) #変更
+            return jsonify({'output':mecabword})
         return jsonify({'error' : 'Missing data!'})
 
     #global selected
